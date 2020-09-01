@@ -1,6 +1,6 @@
 import { EntityRepository, AbstractRepository } from 'typeorm';
 
-import IActivitiesRepository from '@modules/activities/repositories/Activities.repository';
+import IActivitiesRepository from '@modules/activities/repositories/IActivities.repository';
 import ICreateActivityDTO from '@modules/activities/dtos/ICreateActivity.dto';
 
 import Activity from '../entities/Activity.entity';
