@@ -11,7 +11,7 @@ import {
 import Users from '@modules/users/infra/typeorm/entities/User.entity';
 
 @Entity('activities')
-class Activities {
+class Activity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -41,4 +41,4 @@ class Activities {
   user: Users;
 }
 
-export default Activities;
+export default Activity;
