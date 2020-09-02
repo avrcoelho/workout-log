@@ -13,6 +13,7 @@ interface IRequest {
 export interface IResponse {
   token: string;
   id: string;
+  fullname: string;
 }
 
 @Injectable()
@@ -48,6 +49,7 @@ class AuthService {
     return {
       token: this.jwtService.sign(payload),
       id: user.id,
+      fullname: user.fullname,
     };
   }
 }
