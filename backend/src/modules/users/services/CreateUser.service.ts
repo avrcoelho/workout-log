@@ -1,7 +1,7 @@
 import { Injectable, Inject, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import UsersRepository from '../infra/typeorm/repositories/Users.respository';
+import UsersRepository from '../infra/typeorm/repositories/Users.repository';
 import IHashProvider from '../providers/hashProvider/models/IHash.provider';
 
 import ICreateUserDTO from '../dtos/ICreateUser.dto';
