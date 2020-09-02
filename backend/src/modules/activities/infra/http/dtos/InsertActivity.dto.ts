@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsIn, IsDate } from 'class-validator';
+import { IsNotEmpty, IsIn, IsDateString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 class InsertActivityDTO {
@@ -11,7 +11,7 @@ class InsertActivityDTO {
   type: 'run' | 'bike' | 'swimming';
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   @ApiProperty({ type: Date })
   date: Date;
 }
