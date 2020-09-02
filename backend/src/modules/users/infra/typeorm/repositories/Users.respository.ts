@@ -3,6 +3,7 @@ import { EntityRepository, AbstractRepository } from 'typeorm';
 import IUsersRepository from '@modules/users/repositories/IUsers.repository';
 
 import User from '../entities/User.entity';
+import ICreateUserDTO from '../../../dtos/ICreateUser.dto';
 
 @EntityRepository(User)
 class UsersRepository
@@ -16,6 +17,14 @@ class UsersRepository
     });
 
     return activities;
+  }
+
+  public async create(data: ICreateUserDTO): Promise<User> {
+    const user = this.repository.create(data);
+
+    await this.repository.save(user);
+
+    return user;
   }
 }
 
