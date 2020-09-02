@@ -1,5 +1,5 @@
 import Activity from '../infra/typeorm/entities/Activity.entity';
-import ICreateActivityDTO from '../dtos/ICreateActivity.dto';
+import ICreateActivityDTO from '../dtos/IInsertActivity.dto';
 
 export default interface IActivitiesRepository {
   create(data: ICreateActivityDTO): Promise<Activity>;

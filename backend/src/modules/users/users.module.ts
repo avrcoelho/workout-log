@@ -9,6 +9,7 @@ import AuthService from './services/Auth.service';
 import AuthController from './infra/http/controllers/Auth.controller';
 import UserController from './infra/http/controllers/User.controller';
 import UsersRepository from './infra/typeorm/repositories/Users.repository';
+import JwtStrategy from './strategies/jwt.strategy';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import UsersRepository from './infra/typeorm/repositories/Users.repository';
   ],
   controllers: [AuthController, UserController],
   providers: [
+    JwtStrategy,
     CreateUserService,
     AuthService,
     {
