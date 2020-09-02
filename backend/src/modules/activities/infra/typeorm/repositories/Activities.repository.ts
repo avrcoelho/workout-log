@@ -1,7 +1,7 @@
 import { EntityRepository, AbstractRepository } from 'typeorm';
 
 import IActivitiesRepository from '@modules/activities/repositories/IActivities.repository';
-import ICreateActivityDTO from '@modules/activities/dtos/ICreateActivity.dto';
+import IInsertActivityDTO from '@modules/activities/dtos/IInsertActivity.dto';
 
 import Activity from '../entities/Activity.entity';
 
@@ -19,7 +19,7 @@ class ActivitiesRepository
     return activities;
   }
 
-  public async create(activityData: ICreateActivityDTO): Promise<Activity> {
+  public async create(activityData: IInsertActivityDTO): Promise<Activity> {
     const activity = this.repository.create(activityData);
 
     await this.repository.save(activity);
