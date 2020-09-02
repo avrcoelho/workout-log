@@ -6,15 +6,23 @@ import {
   Get,
   Delete,
   Param,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { Request as ResquestExpress } from 'express';
 
+import JwtAuthGuard from '@shared/infra/http/guards/jwt-auth.guard';
 import InsertActivityDTO from '../dtos/InsertActivity.dto';
 import InsertActivityService from '../../../services/InsertActivity.service';
 import GetActivitiesService from '../../../services/GetActivities.service';
 import DeleteActivityService from '../../../services/DeleteActivity.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('activities')
 class ActivityController {
   constructor(
@@ -28,6 +36,7 @@ class ActivityController {
     summary: 'Get user activities',
     tags: ['Activities'],
   })
+  @ApiBearerAuth('access-token')
   async index(@Request() request: ResquestExpress) {
     const user_id = request.user.id;
 
@@ -41,6 +50,7 @@ class ActivityController {
     summary: 'Insert activity to user',
     tags: ['Activities'],
   })
+  @ApiBearerAuth('access-token')
   @ApiBody({ type: InsertActivityDTO })
   async create(
     @Body() body: InsertActivityDTO,
@@ -64,6 +74,7 @@ class ActivityController {
     summary: 'Delete activity',
     tags: ['Activities'],
   })
+  @ApiBearerAuth('access-token')
   @ApiParam({
     name: 'id',
     type: String,
