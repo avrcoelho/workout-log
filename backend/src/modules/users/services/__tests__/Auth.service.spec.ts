@@ -10,7 +10,7 @@ let fakeHashProvider: FakeHashProvider;
 let authService: AuthService;
 let jwtService: JwtService;
 
-describe('CreateUser', () => {
+describe('AuthService', () => {
   beforeEach(() => {
     fakeUserRepository = new FakeUserRepository();
     fakeHashProvider = new FakeHashProvider();
