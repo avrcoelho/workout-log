@@ -7,6 +7,7 @@ import BCryptHashProvider from './providers/hashProvider/implementations/BCryptH
 import CreateUserService from './services/CreateUser.service';
 import AuthService from './services/Auth.service';
 import AuthController from './infra/http/controllers/Auth.controller';
+import UserController from './infra/http/controllers/User.controller';
 import UsersRepository from './infra/typeorm/repositories/Users.repository';
 
 @Module({
@@ -17,7 +18,7 @@ import UsersRepository from './infra/typeorm/repositories/Users.repository';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController],
   providers: [
     CreateUserService,
     AuthService,
