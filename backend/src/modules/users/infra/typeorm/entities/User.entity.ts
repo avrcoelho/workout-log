@@ -6,10 +6,11 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
-import Activities from '../../../../activities/infra/typeorm/entities/Activities.entity';
+
+import Activities from '@modules/activities/infra/typeorm/entities/Activity.entity';
 
 @Entity('users')
-class Users {
+class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -32,4 +33,4 @@ class Users {
   activities: Activities[];
 }
 
-export default Users;
+export default User;
