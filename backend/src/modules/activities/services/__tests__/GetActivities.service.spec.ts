@@ -15,7 +15,7 @@ describe('GetActivitiesService', () => {
     getActivitiesService = new GetActivitiesService(fakeActivitiesRepository);
   });
 
-  it('should be able to insert new activity', async () => {
+  it('should be able to get activities', async () => {
     const user = await fakeUserRepository.create({
       fullname: 'John Doe',
       email: 'johndoe@example.com',
