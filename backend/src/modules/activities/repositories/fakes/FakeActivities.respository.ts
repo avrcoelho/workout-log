@@ -30,7 +30,7 @@ class FakeActivitiesRepository
   }
 
   public async delete(id: string): Promise<void> {
-    this.activities.filter((activity) => activity.id !== id);
+    this.activities = this.activities.filter((activity) => activity.id !== id);
   }
 }
 
