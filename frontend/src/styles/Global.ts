@@ -17,6 +17,8 @@ export default createGlobalStyle`
   body, input, button {
     font-family: sans-serif;
     font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.8px;
   }
 
   h1,h2,h3,h4,h5,h5, strong{
