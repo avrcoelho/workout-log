@@ -24,5 +24,7 @@ export const FormContainer = styled.div`
     font-size: 20px;
     margin: auto;
     margin-bottom: 40px;
+    color: #5b0095;
+    font-weight: bold;
   }
 `;

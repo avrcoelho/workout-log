@@ -20,7 +20,7 @@ const Input: React.FC<Props> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container>
+    <Container hasError={!!error}>
       <input type="text" defaultValue={defaultValue} ref={inputRef} {...rest} />
       {error && <small>{error}</small>}
     </Container>

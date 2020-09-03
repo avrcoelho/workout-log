@@ -7,7 +7,7 @@ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   ...rest
 }) => {
   return (
-    <Container type="button" {...rest}>
+    <Container type="submit" {...rest}>
       {children}
     </Container>
   );

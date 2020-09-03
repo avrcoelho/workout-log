@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  hasError: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -12,7 +16,7 @@ export const Container = styled.div`
   input {
     width: 100%;
     height: 40px;
-    border: 1px solid #999;
+    border: 1px solid ${({ hasError }) => (hasError ? '#c53030' : '#999')};
     border-radius: 4px;
     padding: 0 10px;
 
@@ -22,7 +26,7 @@ export const Container = styled.div`
   }
 
   small {
-    font-size: 14px;
+    font-size: 12px;
     color: #c53030;
   }
 `;
