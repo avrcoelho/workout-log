@@ -14,7 +14,15 @@ export const FormContainer = styled.div`
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 40px 20px;
   border: solid 1px #eee;
   border-radius: 4px;
+  background: #fff;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin: auto;
+    margin-bottom: 40px;
+  }
 `;
