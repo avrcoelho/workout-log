@@ -1,11 +1,27 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import * as rfs from 'rotating-file-stream';
+import path from 'path';
 
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.enableCors();
+  app.use(helmet());
+
+  app.use(
+    morgan('combined', {
+      stream: rfs.createStream('access.log', {
+        interval: '1d', // rotate daily
+        path: path.join(__dirname, '..', 'log'),
+      }),
+    }),
+  );
 
   app.useGlobalPipes(
     new ValidationPipe({
