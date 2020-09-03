@@ -15,20 +15,20 @@ describe('InsertActivityService', () => {
     insertActivityService = new InsertActivityService(fakeActivitiesRepository);
   });
 
-  it('should be able to insert new activity', async () => {
-    const user = await fakeUserRepository.create({
-      fullname: 'John Doe',
-      email: 'johndoe@example.com',
-      password: '123456789',
-    });
+    it('should be able to insert new activity', async () => {
+      const user = await fakeUserRepository.create({
+        fullname: 'John Doe',
+        email: 'johndoe@example.com',
+        password: '123456789',
+      });
 
-    const activity = await insertActivityService.execute({
-      user_id: user.id,
-      time: '2:00',
-      date: new Date(),
-      type: 'run',
-    });
+      const activity = await insertActivityService.execute({
+        user_id: user.id,
+        time: '2:00',
+        date: new Date(),
+        type: 'run',
+      });
 
-    expect(activity).toHaveProperty('id');
-  });
+      expect(activity).toHaveProperty('id');
+    });
 });
