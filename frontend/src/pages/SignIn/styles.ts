@@ -18,6 +18,9 @@ export const FormContainer = styled.div`
   border: solid 1px #eee;
   border-radius: 4px;
   background: #fff;
+  animation: fade 0.6s;
+  -webkit-animation: fade 0.6s;
+  -moz-animation: fade 0.6s;
 
   h1 {
     text-transform: uppercase;
@@ -26,5 +29,19 @@ export const FormContainer = styled.div`
     margin-bottom: 40px;
     color: #5b0095;
     font-weight: bold;
+  }
+
+  a {
+    display: flex;
+    color: #5b0095;
+    font-size: 14px;
+    margin: auto;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;

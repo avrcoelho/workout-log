@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 import getValidationErros from '../../utils/getValidationErros';
 
@@ -47,6 +48,8 @@ const SignIn: React.FC = () => {
 
           <Button>Acessar</Button>
         </Form>
+
+        <Link to="signup">Criar conta</Link>
       </FormContainer>
     </Container>
   );
