@@ -1,9 +1,13 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { Container, FormContainer } from './styles';
 
 const SignIn: React.FC = () => {
-  return <h1>SignIn</h1>;
+  return (
+    <Container>
+      <FormContainer />
+    </Container>
+  );
 };
 
 export default SignIn;
