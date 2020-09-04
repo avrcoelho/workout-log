@@ -26,9 +26,16 @@ export const FormContainer = styled.div`
     text-transform: uppercase;
     font-size: 20px;
     margin: auto;
-    margin-bottom: 40px;
+    margin-bottom: 12px;
     color: #5b0095;
     font-weight: bold;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: auto;
+    margin-bottom: 20px;
+    color: #666;
   }
 
   a {

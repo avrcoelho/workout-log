@@ -70,6 +70,7 @@ const SignUp: React.FC = () => {
     <Container>
       <FormContainer>
         <h1>Workout Log</h1>
+        <h2>Criar conta</h2>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Input name="fullname" placeholder="Nome completo" />
           <Input name="email" placeholder="E-mail" />
