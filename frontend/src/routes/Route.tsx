@@ -4,6 +4,10 @@ import {
   Route as ReactDOMRoute,
   Redirect,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { SignInState } from '../store/modules/signIn/types';
+import { ApplicationState } from '../store';
 
 interface RouteProps extends ReactDOMRouterProps {
   isPrivate?: boolean;
@@ -15,13 +19,15 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const user = false;
+  const { data } = useSelector<ApplicationState, SignInState>(
+    state => state.signIn,
+  );
 
   return (
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
-        return isPrivate === !!user ? (
+        return isPrivate === !!data ? (
           <Component />
         ) : (
           <Redirect

@@ -22,7 +22,7 @@ interface ReduxPersist {
 
 const persistConfig: ReduxPersist = {
   key: 'root',
-  whitelist: ['login'],
+  whitelist: ['signIn'],
   storage,
 };
 
