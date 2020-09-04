@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
 
-import * as SignInActions from '../../store/modules/signIn/actions';
-import { SignInState } from '../../store/modules/signIn/types';
+import * as SignUpActions from '../../store/modules/signUp/actions';
+import { SignUpState } from '../../store/modules/signUp/types';
 import { ApplicationState } from '../../store';
 
 import getValidationErros from '../../utils/getValidationErros';
@@ -18,17 +18,19 @@ import Button from '../../components/Button';
 import { Container, FormContainer } from './styles';
 
 interface IFormData {
+  fullname: string;
   email: string;
   password: string;
+  password_confirmation: string;
 }
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const dispatch = useDispatch();
 
-  const { loading } = useSelector<ApplicationState, SignInState>(
-    state => state.signIn,
+  const { loading } = useSelector<ApplicationState, SignUpState>(
+    state => state.signUp,
   );
 
   const handleSubmit = useCallback(
@@ -41,14 +43,18 @@ const SignIn: React.FC = () => {
         const invalidEmail = 'E-mail inválido';
 
         const schema = Yup.object().shape({
+          fullname: Yup.string().required(requiredFied),
           email: Yup.string().email(invalidEmail).required(requiredFied),
           password: Yup.string().required(requiredFied),
+          password_confirmation: Yup.string()
+            .oneOf([Yup.ref('password'), ''], 'Senhas não conferem')
+            .required(requiredFied),
         });
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        dispatch(SignInActions.loadRequest(data));
+        dispatch(SignUpActions.loadRequest(data));
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErros(error);
@@ -65,22 +71,28 @@ const SignIn: React.FC = () => {
       <FormContainer>
         <h1>Workout Log</h1>
         <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input name="fullname" placeholder="Nome completo" />
           <Input name="email" placeholder="E-mail" />
           <Input type="password" name="password" placeholder="Senha" />
+          <Input
+            type="password"
+            name="password_confirmation"
+            placeholder="Confirmar senha"
+          />
 
           <Button>
             {loading ? (
               <FaSpinner size={20} color="#fff" className="icon-spin" />
             ) : (
-              'Entrar'
+              'Criar'
             )}
           </Button>
         </Form>
 
-        <Link to="/signup">Criar conta</Link>
+        <Link to="/">Acessar conta</Link>
       </FormContainer>
     </Container>
   );
 };
 
-export default SignIn;
+export default SignUp;
