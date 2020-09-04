@@ -1,4 +1,4 @@
-import { BadRequestException } from '@nestjs/common';
+import { HttpException } from '@nestjs/common';
 
 import FakeUserRepository from '../../repositories/fakes/FakeUser.repository';
 import FakeHashProvider from '../../providers/hashProvider/fakes/FakeHash.provider';
@@ -40,6 +40,6 @@ describe('CreateUserService', () => {
         email: 'johndoe@example.com',
         password: '123456789',
       }),
-    ).rejects.toBeInstanceOf(BadRequestException);
+    ).rejects.toBeInstanceOf(HttpException);
   });
 });

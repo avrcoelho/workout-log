@@ -1,4 +1,4 @@
-import { Injectable, Inject, BadRequestException } from '@nestjs/common';
+import { Injectable, Inject, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import UsersRepository from '../infra/typeorm/repositories/Users.repository';
@@ -26,7 +26,7 @@ class CreateUserService {
     );
 
     if (checkUserExists) {
-      throw new BadRequestException('E-mail address already registered');
+      throw new HttpException('E-mail address already registered', 409);
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
