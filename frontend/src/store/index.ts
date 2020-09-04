@@ -7,9 +7,11 @@ import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
 
 import { SignInState } from './modules/signIn/types';
+import { SignUpState } from './modules/signUp/types';
 
 export interface ApplicationState {
   signIn: SignInState;
+  signUp: SignUpState;
 }
 
 interface ReduxPersist {
