@@ -1,5 +1,9 @@
-import { all } from 'redux-saga/effects';
+import { SagaIterator } from 'redux-saga';
+import { all, takeLatest } from 'redux-saga/effects';
 
-export default function* rootSaga() {
-  return yield all([]);
+import { signIn } from './signIn/sagas';
+import { SignInTypes } from './signIn/types';
+
+export default function* rootSaga(): SagaIterator {
+  return yield all([takeLatest(SignInTypes.LOAD_REQUEST, signIn)]);
 }

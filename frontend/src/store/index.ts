@@ -6,7 +6,11 @@ import storage from 'redux-persist/lib/storage';
 import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
 
-export interface ApplicationState {}
+import { SignInState } from './modules/signIn/types';
+
+export interface ApplicationState {
+  signIn: SignInState;
+}
 
 interface ReduxPersist {
   key: string;

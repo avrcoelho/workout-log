@@ -55,6 +55,7 @@
     "@types/yup": "^0.29.6",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
+    "axios-mock-adapter": "^1.18.2",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-typescript": "^2.3.0",
@@ -68,7 +69,11 @@
   "jest": {
     "collectCoverageFrom": [
       "src/pages/**/*.tsx",
-      "src/components/**/*.tsx"
+      "src/components/**/*.tsx",
+      "src/store/modules/**/*.ts",
+      "!src/store/modules/**/types.ts",
+      "!src/store/*.ts",
+      "!src/store/modules/*.ts"
     ]
   }
 }
