@@ -3,6 +3,12 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaSpinner } from 'react-icons/fa';
+
+import * as SignInActions from '../../store/modules/signIn/actions';
+import { SignInState } from '../../store/modules/signIn/types';
+import { ApplicationState } from '../../store';
 
 import getValidationErros from '../../utils/getValidationErros';
 
@@ -14,29 +20,42 @@ import { Container, FormContainer } from './styles';
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: FormData) => {
-    try {
-      // Remove all previous errors
-      formRef.current?.setErrors({});
+  const dispatch = useDispatch();
 
-      const requiredFied = 'Campo obrigatório';
-      const invalidEmail = 'E-mail inválido';
+  const { loading } = useSelector<ApplicationState, SignInState>(
+    state => state.signIn,
+  );
 
-      const schema = Yup.object().shape({
-        email: Yup.string().email(invalidEmail).required(requiredFied),
-        password: Yup.string().required(requiredFied),
-      });
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const errors = getValidationErros(error);
+  const handleSubmit = useCallback(
+    async (data: any) => {
+      try {
+        // Remove all previous errors
+        formRef.current?.setErrors({});
 
-        formRef.current?.setErrors(errors);
+        const requiredFied = 'Campo obrigatório';
+        const invalidEmail = 'E-mail inválido';
+
+        const schema = Yup.object().shape({
+          email: Yup.string().email(invalidEmail).required(requiredFied),
+          password: Yup.string().required(requiredFied),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        console.log(data);
+
+        dispatch(SignInActions.loadRequest(data));
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          const errors = getValidationErros(error);
+
+          formRef.current?.setErrors(errors);
+        }
       }
-    }
-  }, []);
+    },
+    [dispatch],
+  );
 
   return (
     <Container>
@@ -46,10 +65,16 @@ const SignIn: React.FC = () => {
           <Input name="email" placeholder="E-mail" />
           <Input type="password" name="password" placeholder="Senha" />
 
-          <Button>Acessar</Button>
+          <Button>
+            {loading ? (
+              <FaSpinner size={20} color="#fff" className="icon-spin" />
+            ) : (
+              'Entrar'
+            )}
+          </Button>
         </Form>
 
-        <Link to="signup">Criar conta</Link>
+        <Link to="/signup">Criar conta</Link>
       </FormContainer>
     </Container>
   );
