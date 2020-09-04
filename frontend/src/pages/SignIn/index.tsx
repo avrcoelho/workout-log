@@ -43,8 +43,6 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        console.log(data);
-
         dispatch(SignInActions.loadRequest(data));
       } catch (error) {
         if (error instanceof Yup.ValidationError) {

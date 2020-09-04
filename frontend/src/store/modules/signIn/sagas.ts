@@ -11,7 +11,7 @@ export function* signIn({ payload: { userData } }: any): SagaIterator {
 
     yield put(loadSuccess(data));
   } catch (err) {
-    toast.error(err.response.message);
+    toast.error('Erro ao entrar. Verifique seus dados');
 
     yield put(loadFailure());
   }
