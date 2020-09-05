@@ -31,9 +31,19 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
 
+    @media (max-width: 560px) {
+      flex-direction: column;
+    }
+
     > div {
       margin-top: 0 !important;
       margin-right: 10px;
+
+      @media (max-width: 560px) {
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+        margin-right: 0;
+      }
     }
 
     button {
