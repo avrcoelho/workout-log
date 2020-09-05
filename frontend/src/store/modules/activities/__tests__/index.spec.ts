@@ -69,4 +69,19 @@ describe('Activities reducer', () => {
       loading: false,
     });
   });
+
+  it('REMOVE', () => {
+    const state = reducer(
+      INITIAL_STATE,
+      ActivitiesActions.insert(activities[0]),
+    );
+
+    const newState = reducer(state, ActivitiesActions.remove(activities[0].id));
+
+    expect(newState).toStrictEqual({
+      ...newState,
+      data: [],
+      loading: false,
+    });
+  });
 });

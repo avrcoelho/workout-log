@@ -26,6 +26,11 @@ const reducer: Reducer<ActivitiesState> = (state = INITIAL_STATE, action) => {
         ...state,
         data: [action.payload.activity, ...state.data],
       };
+    case ActivitiesTypes.REMOVE:
+      return {
+        ...state,
+        data: state.data.filter(activity => activity.id !== action.payload.id),
+      };
     default:
       return state;
   }

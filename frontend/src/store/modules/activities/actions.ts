@@ -7,3 +7,4 @@ export const loadSuccess = (activities: Activity[]) =>
 export const loadFailure = () => action(ActivitiesTypes.LOAD_FAILURE);
 export const insert = (activity: Activity) =>
   action(ActivitiesTypes.INSERT, { activity });
+export const remove = (id: string) => action(ActivitiesTypes.REMOVE, { id });

@@ -3,6 +3,7 @@ export enum ActivitiesTypes {
   LOAD_SUCCESS = '@activities/LOAD_SUCCESS',
   LOAD_FAILURE = '@activities/LOAD_FAILURE',
   INSERT = '@activities/INSERT',
+  REMOVE = '@activities/REMOVE',
 }
 
 export interface Activity {
