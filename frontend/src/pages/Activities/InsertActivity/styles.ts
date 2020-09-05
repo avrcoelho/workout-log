@@ -31,7 +31,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
 
-    div {
+    > div {
       margin-top: 0 !important;
       margin-right: 10px;
     }

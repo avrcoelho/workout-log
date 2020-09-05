@@ -4,6 +4,7 @@ import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 import ReactInputMask from 'react-input-mask';
 
 import { Container } from './styles';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props extends Omit<ReactDatePickerProps, 'onChange'> {
   name: string;
