@@ -9,6 +9,7 @@ export function* signUp({ payload: { userData } }: any): SagaIterator {
   try {
     yield call(api.post, 'users', userData);
 
+    toast.success('Conta criada com sucesso');
     yield put(loadSuccess());
   } catch (err) {
     toast.error(

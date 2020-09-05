@@ -1,6 +1,5 @@
 import React from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 
@@ -12,11 +11,9 @@ const App: React.FC = () => {
   return (
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>
-        <BrowserRouter>
-          <GlobalStyles />
-          <ToastContainer autoClose={3000} />
-          <Routes />
-        </BrowserRouter>
+        <GlobalStyles />
+        <ToastContainer autoClose={3000} />
+        <Routes />
       </PersistGate>
     </Provider>
   );
