@@ -12,7 +12,7 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const SelectInput: React.FC<Props> = ({ name, options, ...rest }) => {
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const { fieldName, registerField, error } = useField(name);
   const selectRef = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
@@ -31,7 +31,9 @@ const SelectInput: React.FC<Props> = ({ name, options, ...rest }) => {
         </option>
 
         {options.map(option => (
-          <option key={option.value}>{option.title}</option>
+          <option key={option.value} value={option.value}>
+            {option.title}
+          </option>
         ))}
       </select>
       {error && <small>{error}</small>}
