@@ -3,11 +3,12 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import { Container } from './styles';
-import Input from '../../../components/Input';
 import InputMask from '../../../components/InputMask';
 import InputDate from '../../../components/InputDate';
 import SelectInput from '../../../components/SelectInput';
 import Button from '../../../components/Button';
+
+import activitiesTypes from '../../../constants/activitiesTypes';
 
 interface IFormData {
   user_id: string;
@@ -31,7 +32,7 @@ const InsertActivity: React.FC = () => {
         </legend>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <SelectInput name="type" options={[]} />
+          <SelectInput name="type" options={activitiesTypes} />
           <InputMask
             name="time"
             mask="99:99"
