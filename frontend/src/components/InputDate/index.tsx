@@ -32,6 +32,8 @@ const InputDate: React.FC<Props> = ({ name, ...rest }) => {
         dateFormat="dd/MM/yyyy"
         strictParsing
         onChange={setDate}
+        value={date}
+        className="remove-box-shadow-input"
         customInput={
           <ReactInputMask type="tel" maskChar={null} mask="99/99/9999" />
         }

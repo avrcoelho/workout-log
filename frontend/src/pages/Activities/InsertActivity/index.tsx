@@ -1,14 +1,23 @@
 import React, { useCallback, useRef } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaSpinner } from 'react-icons/fa';
 
-import { Container } from './styles';
+import * as InsertActivityActions from '../../../store/modules/insertActivity/actions';
+import { InsertActivityState } from '../../../store/modules/insertActivity/types';
+import { ApplicationState } from '../../../store';
+
+import activitiesTypes from '../../../constants/activitiesTypes';
+import getValidationErros from '../../../utils/getValidationErros';
+
 import InputMask from '../../../components/InputMask';
 import InputDate from '../../../components/InputDate';
 import SelectInput from '../../../components/SelectInput';
 import Button from '../../../components/Button';
 
-import activitiesTypes from '../../../constants/activitiesTypes';
+import { Container } from './styles';
 
 interface IFormData {
   user_id: string;
@@ -20,9 +29,43 @@ interface IFormData {
 const InsertActivity: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback((data: IFormData) => {
-    console.log(data);
-  }, []);
+  const dispatch = useDispatch();
+
+  const { loading } = useSelector<ApplicationState, InsertActivityState>(
+    state => state.insertActivity,
+  );
+
+  const handleSubmit = useCallback(
+    async (data: IFormData) => {
+      try {
+        // Remove all previous errors
+        formRef.current?.setErrors({});
+
+        const requiredFied = 'Campo obrigatório';
+        const invalidTime = 'Valor inválido';
+
+        const schema = Yup.object().shape({
+          type: Yup.string().required(requiredFied),
+          time: Yup.string()
+            .matches(/ˆ$|^([0-9]{2}):([0-9]{2})$/, invalidTime)
+            .required(requiredFied),
+          date: Yup.date().required(requiredFied).typeError(requiredFied),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        dispatch(InsertActivityActions.loadRequest(data));
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          const errors = getValidationErros(error);
+
+          formRef.current?.setErrors(errors);
+        }
+      }
+    },
+    [dispatch],
+  );
 
   return (
     <Container>
@@ -32,16 +75,21 @@ const InsertActivity: React.FC = () => {
         </legend>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <SelectInput name="type" options={activitiesTypes} />
-          <InputMask
-            name="time"
-            mask="99:99"
-            placeholder="Tempo"
-            className="separator"
+          <SelectInput
+            name="type"
+            options={activitiesTypes}
+            placeholder="Tipo"
           />
-          <InputDate name="date" placeholderText="Data" className="separator" />
+          <InputMask name="time" mask="99:99" placeholder="Tempo" />
+          <InputDate name="date" placeholderText="Data" />
 
-          <Button>Inserir</Button>
+          <Button>
+            {loading ? (
+              <FaSpinner size={20} color="#fff" className="icon-spin" />
+            ) : (
+              'Inserir'
+            )}
+          </Button>
         </Form>
       </fieldset>
     </Container>
