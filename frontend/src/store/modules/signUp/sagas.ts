@@ -11,7 +11,11 @@ export function* signUp({ payload: { userData } }: any): SagaIterator {
 
     yield put(loadSuccess());
   } catch (err) {
-    toast.error('Erro ao realizar cadastro');
+    toast.error(
+      err.response.status === 409
+        ? 'E-mail já cadastrado'
+        : 'Erro ao realizar cadastro',
+    );
 
     yield put(loadFailure());
   }

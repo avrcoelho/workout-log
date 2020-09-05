@@ -1,5 +1,6 @@
 import { runSaga } from 'redux-saga';
 import MockAdapter from 'axios-mock-adapter';
+import { toast } from 'react-toastify';
 
 import api from '../../../../services/api';
 
@@ -32,7 +33,22 @@ describe('SignUp Saga', () => {
     expect(dispatch).toHaveBeenCalledWith(loadSuccess());
   });
 
+  it('should fail when api returns error with status 409', async () => {
+    const toastSpy = jest.spyOn(toast, 'error').mockImplementation();
+
+    apiMock.onPost('users').reply(409);
+
+    await runSaga({ dispatch }, signUp, {
+      payload: userData,
+    }).toPromise();
+
+    expect(dispatch).toHaveBeenCalledWith(loadFailure());
+    expect(toastSpy).toHaveBeenCalledWith('E-mail já cadastrado');
+  });
+
   it('should fail when api returns error', async () => {
+    const toastSpy = jest.spyOn(toast, 'error').mockImplementation();
+
     apiMock.onPost('users').reply(500);
 
     await runSaga({ dispatch }, signUp, {
@@ -40,5 +56,6 @@ describe('SignUp Saga', () => {
     }).toPromise();
 
     expect(dispatch).toHaveBeenCalledWith(loadFailure());
+    expect(toastSpy).toHaveBeenCalledWith('Erro ao realizar cadastro');
   });
 });
