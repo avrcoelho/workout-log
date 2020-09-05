@@ -11,7 +11,7 @@ jest.mock('@unform/core', () => {
   return {
     useField() {
       return {
-        fieldName: 'time',
+        fieldName: 'date',
         defaultValue: '',
         error: mockedError(),
         registerField: jest.fn(),
@@ -23,10 +23,10 @@ jest.mock('@unform/core', () => {
 describe('InputMask component', () => {
   it('should be able to render an input', () => {
     const { getByPlaceholderText, queryByText } = render(
-      <Input name="time" mask="99:99" placeholder="Time" />,
+      <Input name="time" placeholderText="Date" />,
     );
 
-    expect(getByPlaceholderText('Time')).toBeTruthy();
+    expect(getByPlaceholderText('Date')).toBeTruthy();
     expect(queryByText('Cmapo obrigatório')).toBeFalsy();
   });
 
@@ -34,7 +34,7 @@ describe('InputMask component', () => {
     mockedError.mockImplementation(() => 'Cmapo obrigatório');
 
     const { queryByText } = render(
-      <Input name="time" mask="99:99" placeholder="Time" />,
+      <Input name="time" placeholderText="Date" />,
     );
 
     expect(queryByText('Cmapo obrigatório')).toBeTruthy();
