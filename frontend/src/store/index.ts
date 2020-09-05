@@ -10,10 +10,12 @@ import history from '../routes/history';
 
 import { SignInState } from './modules/signIn/types';
 import { SignUpState } from './modules/signUp/types';
+import { ActivitiesState } from './modules/activities/types';
 
 export interface ApplicationState {
   signIn: SignInState;
   signUp: SignUpState;
+  activities: ActivitiesState;
 }
 
 interface ReduxPersist {

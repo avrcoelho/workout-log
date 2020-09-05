@@ -7,9 +7,13 @@ import { SignInTypes } from './signIn/types';
 import { signUp } from './signUp/sagas';
 import { SignUpTypes } from './signUp/types';
 
+import { activities } from './activities/sagas';
+import { ActivitiesTypes } from './activities/types';
+
 export default function* rootSaga(): SagaIterator {
   return yield all([
     takeLatest(SignInTypes.LOAD_REQUEST, signIn),
     takeLatest(SignUpTypes.LOAD_REQUEST, signUp),
+    takeLatest(ActivitiesTypes.LOAD_REQUEST, activities),
   ]);
 }
