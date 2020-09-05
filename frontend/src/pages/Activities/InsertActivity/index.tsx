@@ -4,6 +4,7 @@ import { FormHandles } from '@unform/core';
 
 import { Container } from './styles';
 import Input from '../../../components/Input';
+import InputMask from '../../../components/InputMask';
 import Button from '../../../components/Button';
 
 interface IFormData {
@@ -16,7 +17,9 @@ interface IFormData {
 const InsertActivity: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback((data: IFormData) => {}, []);
+  const handleSubmit = useCallback((data: IFormData) => {
+    console.log(data);
+  }, []);
 
   return (
     <Container>
@@ -26,7 +29,7 @@ const InsertActivity: React.FC = () => {
         </legend>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="time" placeholder="Tempo" />
+          <InputMask name="time" mask="99:99" placeholder="Tempo" />
           <Input name="type" placeholder="" />
           <Input name="date" placeholder="Data" />
 
