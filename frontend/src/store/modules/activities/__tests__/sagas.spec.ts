@@ -39,7 +39,7 @@ describe('Activities Saga', () => {
     expect(dispatch).toHaveBeenCalledWith(loadSuccess(data));
   });
 
-  it('should fail when api returns error with status 409', async () => {
+  it('should fail when api returns error with status 500', async () => {
     apiMock.onGet('activities').reply(500);
 
     await runSaga({ getState, dispatch }, activities).toPromise();
