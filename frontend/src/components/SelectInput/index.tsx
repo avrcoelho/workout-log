@@ -25,7 +25,11 @@ const SelectInput: React.FC<Props> = ({ name, options, ...rest }) => {
 
   return (
     <Container hasError={!!error}>
-      <select defaultValue={defaultValue} ref={selectRef} {...rest}>
+      <select defaultValue="" ref={selectRef} {...rest}>
+        <option value="" disabled hidden>
+          Tipo
+        </option>
+
         {options.map(option => (
           <option key={option.value}>{option.title}</option>
         ))}

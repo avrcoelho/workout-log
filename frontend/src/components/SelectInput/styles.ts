@@ -13,16 +13,12 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 14px;
   }
 
-  input {
+  select {
     width: 100%;
     height: 40px;
     border: 1px solid ${({ hasError }) => (hasError ? '#c53030' : '#999')};
     border-radius: 4px;
     padding: 0 10px;
-
-    &::placeholder {
-      color: #666360;
-    }
   }
 
   small {

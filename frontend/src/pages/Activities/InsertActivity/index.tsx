@@ -6,6 +6,7 @@ import { Container } from './styles';
 import Input from '../../../components/Input';
 import InputMask from '../../../components/InputMask';
 import InputDate from '../../../components/InputDate';
+import SelectInput from '../../../components/SelectInput';
 import Button from '../../../components/Button';
 
 interface IFormData {
@@ -30,13 +31,13 @@ const InsertActivity: React.FC = () => {
         </legend>
 
         <Form ref={formRef} onSubmit={handleSubmit}>
+          <SelectInput name="type" options={[]} />
           <InputMask
             name="time"
             mask="99:99"
             placeholder="Tempo"
             className="separator"
           />
-          <Input name="type" placeholder="" className="separator" />
           <InputDate name="date" placeholderText="Data" className="separator" />
 
           <Button>Inserir</Button>
