@@ -11,7 +11,7 @@ const apiMock = new MockAdapter(api);
 describe('Delete activity Saga', () => {
   const dispatch = jest.fn();
 
-  const getState = () => ({ signIn: { token: 'e792b5ae9c131400' } });
+  const getState = () => ({ signIn: { data: { token: 'e792b5ae9c131400' } } });
 
   it('should be able to fetch Delete activity', async () => {
     apiMock.onDelete('activities/123').reply(200);

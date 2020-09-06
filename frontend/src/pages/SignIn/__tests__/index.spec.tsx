@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import * as SignInActions from '../../../store/modules/signIn/actions';
 
-import SingIn from '..';
+import SignIn from '..';
 
 jest.mock('react-router-dom', () => {
   return {
@@ -31,7 +31,7 @@ describe('SignIn Page', () => {
 
     dispatchMocked.mockReturnValue(dispatch);
 
-    const { getByPlaceholderText, getByText } = render(<SingIn />);
+    const { getByPlaceholderText, getByText } = render(<SignIn />);
 
     const emailField = getByPlaceholderText('E-mail');
     const passwordField = getByPlaceholderText('Senha');
@@ -69,7 +69,7 @@ describe('SignIn Page', () => {
 
     dispatchMocked.mockReturnValue(dispatch);
 
-    const { getByText } = render(<SingIn />);
+    const { getByText } = render(<SignIn />);
 
     const buttonElement = getByText('Entrar');
 
@@ -94,7 +94,7 @@ describe('SignIn Page', () => {
 
     dispatchMocked.mockReturnValue(dispatch);
 
-    const { container } = render(<SingIn />);
+    const { container } = render(<SignIn />);
 
     expect(container.querySelector('.icon-spin')).toBeTruthy();
   });

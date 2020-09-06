@@ -29,7 +29,7 @@ describe('Activities Saga', () => {
     },
   ];
 
-  const getState = () => ({ signIn: { token: 'e792b5ae9c131400' } });
+  const getState = () => ({ signIn: { data: { token: 'e792b5ae9c131400' } } });
 
   it('should be able to fetch Activities', async () => {
     apiMock.onGet('activities').reply(200, data);

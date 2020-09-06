@@ -10,7 +10,7 @@ import { ApplicationState } from '../..';
 export function* activities(): SagaIterator {
   try {
     const { token }: SignIn = yield select(
-      (state: ApplicationState) => state.signIn,
+      (state: ApplicationState) => state.signIn.data,
     );
 
     api.defaults.headers.authorization = `Bearer ${token}`;

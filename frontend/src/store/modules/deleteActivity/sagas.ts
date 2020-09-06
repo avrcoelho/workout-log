@@ -11,7 +11,7 @@ import { ApplicationState } from '../../';
 export function* insertActivity({ payload: { id } }: any): SagaIterator {
   try {
     const { token }: SignIn = yield select(
-      (state: ApplicationState) => state.signIn,
+      (state: ApplicationState) => state.signIn.data,
     );
 
     api.defaults.headers.authorization = `Bearer ${token}`;
