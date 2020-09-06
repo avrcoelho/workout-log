@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { parseISO, format } from 'date-fns';
 
 import * as ActivitiesActions from '../../../store/modules/activities/actions';
+import * as DeleteActivityActions from '../../../store/modules/deleteActivity/actions';
 import { ActivitiesState } from '../../../store/modules/activities/types';
 import { ApplicationState } from '../../../store';
 
@@ -33,6 +34,13 @@ const List: React.FC = () => {
     });
   }, [data]);
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      dispatch(DeleteActivityActions.loadRequest(id));
+    },
+    [dispatch],
+  );
+
   return (
     <Container>
       <Item className="list-header">
@@ -41,7 +49,11 @@ const List: React.FC = () => {
         <Column>Data</Column>
       </Item>
       {dataParsed.map(activity => (
-        <ActivityItem key={activity.id} {...activity} />
+        <ActivityItem
+          key={activity.id}
+          {...activity}
+          handleDelete={handleDelete}
+        />
       ))}
     </Container>
   );

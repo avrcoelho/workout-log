@@ -12,4 +12,22 @@ export const Container = styled.li`
 
 export const Column = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &.space-between {
+    justify-content: space-between;
+  }
+`;
+
+export const ButtonDelete = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  outline: none;
 `;
