@@ -38,7 +38,7 @@ describe('Activities Page', () => {
 
     await act(async () => {
       fireEvent.change(typeField, { target: { value: 'run' } });
-      fireEvent.change(timeField, { target: { value: '02:00:00' } });
+      fireEvent.change(timeField, { target: { value: '02:00' } });
       fireEvent.focus(dateField);
 
       await waitFor(() => {

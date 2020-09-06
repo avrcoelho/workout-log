@@ -30,9 +30,22 @@ const List: React.FC = () => {
   const dataParsed = useMemo(() => {
     return data.map(activity => {
       const [parsedDate] = activity.date.split('T');
+      let parsedType = '';
+
+      switch (activity.type) {
+        case 'bike':
+          parsedType = 'Bicileta';
+          break;
+        case 'run':
+          parsedType = 'Corrida';
+          break;
+        default:
+          parsedType = 'Natação';
+      }
 
       return {
         ...activity,
+        type: parsedType,
         date: format(parseISO(activity.date), "dd'/'MM'/'yyyy"),
         time: format(parseISO(`${parsedDate} ${activity.time}`), "H'h'mm'min'"),
       };

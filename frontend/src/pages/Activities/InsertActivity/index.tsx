@@ -55,13 +55,15 @@ const InsertActivity: React.FC = () => {
         const schema = Yup.object().shape({
           type: Yup.string().required(requiredFied),
           time: Yup.string()
-            .matches(/ˆ$|^([0-9]{2}):([0-9]{2}):([0-9]{2})$/, invalidTime)
+            .matches(/ˆ$|^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, invalidTime)
             .required(requiredFied),
           date: Yup.date().required(requiredFied).typeError(requiredFied),
         });
         await schema.validate(data, {
           abortEarly: false,
         });
+
+        data = { ...data, time: `${data.time}:00` };
 
         dispatch(InsertActivityActions.loadRequest(data));
       } catch (error) {
@@ -88,7 +90,7 @@ const InsertActivity: React.FC = () => {
             options={activitiesTypes}
             placeholder="Tipo"
           />
-          <InputMask name="time" mask="99:99:99" placeholder="Tempo" />
+          <InputMask name="time" mask="99:99" placeholder="Tempo" />
           <InputDate name="date" placeholderText="Data" />
 
           <Button>

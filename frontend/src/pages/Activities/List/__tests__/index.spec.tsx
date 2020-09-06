@@ -32,6 +32,13 @@ describe('List activities component', () => {
               time: '03:00:00',
               date: new Date().toISOString(),
             },
+            {
+              id: '3',
+              user_id: '124',
+              type: 'swimming',
+              time: '03:00:00',
+              date: new Date().toISOString(),
+            },
           ],
         },
         deleteActivity: {
@@ -48,7 +55,7 @@ describe('List activities component', () => {
 
     expect(dispatch).toHaveBeenCalledWith(ActivitiesActions.loadRequest());
 
-    expect(container.querySelectorAll('li')).toHaveLength(3);
+    expect(container.querySelectorAll('li')).toHaveLength(4);
   });
 
   it('should be able to call handleDelete', () => {
@@ -74,6 +81,6 @@ describe('List activities component', () => {
 
     const { queryByText } = render(<List />);
 
-    expect(queryByText(/6h00min/)).toBeTruthy();
+    expect(queryByText(/9h0min/)).toBeTruthy();
   });
 });
