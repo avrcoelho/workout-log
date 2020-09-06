@@ -10,7 +10,7 @@ export const Container = styled.div`
     text-transform: uppercase;
     font-size: 20px;
     margin: auto;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     color: #5b0095;
     font-weight: bold;
     text-align: center;
