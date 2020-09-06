@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useEffect } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -7,6 +7,7 @@ import { FaSpinner } from 'react-icons/fa';
 
 import * as InsertActivityActions from '../../../store/modules/insertActivity/actions';
 import { InsertActivityState } from '../../../store/modules/insertActivity/types';
+import { ActivitiesState } from '../../../store/modules/activities/types';
 import { ApplicationState } from '../../../store';
 
 import activitiesTypes from '../../../constants/activitiesTypes';
@@ -34,6 +35,13 @@ const InsertActivity: React.FC = () => {
   const { loading } = useSelector<ApplicationState, InsertActivityState>(
     state => state.insertActivity,
   );
+  const { data: activities } = useSelector<ApplicationState, ActivitiesState>(
+    state => state.activities,
+  );
+
+  useEffect(() => {
+    formRef.current?.reset();
+  }, [activities]);
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {

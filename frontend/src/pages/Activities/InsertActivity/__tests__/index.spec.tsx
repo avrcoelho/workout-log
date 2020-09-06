@@ -11,12 +11,15 @@ jest.mock('react-redux');
 const selectorMocked = useSelector as jest.Mock<typeof useSelector>;
 const dispatchMocked = useDispatch as jest.Mock<typeof useDispatch>;
 
-describe('SignIn Page', () => {
+describe('Activities Page', () => {
   it('should be able to insert activity', async () => {
     selectorMocked.mockImplementation((callback: any) =>
       callback({
         insertActivity: {
           loading: false,
+        },
+        activities: {
+          data: [],
         },
       }),
     );
@@ -66,6 +69,9 @@ describe('SignIn Page', () => {
         insertActivity: {
           loading: false,
         },
+        activities: {
+          data: [],
+        },
       }),
     );
 
@@ -90,6 +96,9 @@ describe('SignIn Page', () => {
       callback({
         insertActivity: {
           loading: true,
+        },
+        activities: {
+          data: [],
         },
       }),
     );

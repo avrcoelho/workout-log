@@ -17,6 +17,9 @@ const InputMask: React.FC<Props> = ({ name, ...rest }) => {
       name: fieldName,
       ref: inputRef.current,
       path: 'value',
+      clearValue(ref: any) {
+        ref.setInputValue('');
+      },
     });
   }, [fieldName, registerField]);
 

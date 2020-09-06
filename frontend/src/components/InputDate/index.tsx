@@ -21,6 +21,9 @@ const InputDate: React.FC<Props> = ({ name, ...rest }) => {
       name: fieldName,
       ref: inputRef.current,
       path: 'props.selected',
+      clearValue(ref: any) {
+        ref.clear();
+      },
     });
   }, [fieldName, registerField]);
 
