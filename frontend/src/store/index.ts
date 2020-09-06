@@ -12,12 +12,14 @@ import { SignInState } from './modules/signIn/types';
 import { SignUpState } from './modules/signUp/types';
 import { ActivitiesState } from './modules/activities/types';
 import { InsertActivityState } from './modules/insertActivity/types';
+import { DeleteActivityState } from './modules/deleteActivity/types';
 
 export interface ApplicationState {
   signIn: SignInState;
   signUp: SignUpState;
   activities: ActivitiesState;
   insertActivity: InsertActivityState;
+  deleteActivity: DeleteActivityState;
 }
 
 interface ReduxPersist {

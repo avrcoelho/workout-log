@@ -20,3 +20,12 @@ export const Item = styled.li`
 export const Column = styled.div`
   flex: 1;
 `;
+
+export const Total = styled.span`
+  font-size: 18px;
+  color: #666;
+  font-weight: bold;
+  margin-top: 24px;
+  display: block;
+  text-align: center;
+`;

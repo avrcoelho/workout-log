@@ -8,7 +8,7 @@ import { remove } from '../activities/actions';
 import { SignIn } from '../signIn/types';
 import { ApplicationState } from '../../';
 
-export function* insertActivity({ payload: { id } }: any): SagaIterator {
+export function* deleteActivity({ payload: { id } }: any): SagaIterator {
   try {
     const { token }: SignIn = yield select(
       (state: ApplicationState) => state.signIn.data,
@@ -16,7 +16,7 @@ export function* insertActivity({ payload: { id } }: any): SagaIterator {
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
-    const { data } = yield call(api.delete, `activities/${id}`);
+    yield call(api.delete, `activities/${id}`);
 
     toast.success('Atividade excluída');
 

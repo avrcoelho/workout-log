@@ -28,9 +28,7 @@ describe('Activities Page', () => {
 
     dispatchMocked.mockReturnValue(dispatch);
 
-    const { getByPlaceholderText, getByText, debug } = render(
-      <InsertActivity />,
-    );
+    const { getByPlaceholderText, getByText } = render(<InsertActivity />);
 
     const typeField = getByPlaceholderText('Tipo');
     const timeField = getByPlaceholderText('Tempo');
@@ -40,7 +38,7 @@ describe('Activities Page', () => {
 
     await act(async () => {
       fireEvent.change(typeField, { target: { value: 'run' } });
-      fireEvent.change(timeField, { target: { value: '02:00' } });
+      fireEvent.change(timeField, { target: { value: '02:00:00' } });
       fireEvent.focus(dateField);
 
       await waitFor(() => {
@@ -54,7 +52,7 @@ describe('Activities Page', () => {
       expect(dispatch).toHaveBeenCalledWith(
         InsertActivityActions.loadRequest({
           type: 'run',
-          time: '02:00',
+          time: '02:00:00',
           date: new Date('2020-09-20T03:00:00.000Z'),
         }),
       );

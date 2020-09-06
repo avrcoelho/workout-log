@@ -5,11 +5,13 @@ import { parseISO, format } from 'date-fns';
 import * as ActivitiesActions from '../../../store/modules/activities/actions';
 import * as DeleteActivityActions from '../../../store/modules/deleteActivity/actions';
 import { ActivitiesState } from '../../../store/modules/activities/types';
+import { DeleteActivityState } from '../../../store/modules/deleteActivity/types';
 import { ApplicationState } from '../../../store';
 
 import ActivityItem from './Item';
+import sumOfActivityTime from '../../../utils/sumOfActivityTime';
 
-import { Container, Item, Column } from './styles';
+import { Container, Item, Column, Total } from './styles';
 
 const List: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,9 @@ const List: React.FC = () => {
   const { data } = useSelector<ApplicationState, ActivitiesState>(
     state => state.activities,
   );
+  const { id: idSelected } = useSelector<ApplicationState, DeleteActivityState>(
+    state => state.deleteActivity,
+  );
 
   const dataParsed = useMemo(() => {
     return data.map(activity => {
@@ -29,10 +34,12 @@ const List: React.FC = () => {
       return {
         ...activity,
         date: format(parseISO(activity.date), "dd'/'MM'/'yyyy"),
-        time: format(parseISO(`${parsedDate} ${activity.time}`), "h'h'mm'min'"),
+        time: format(parseISO(`${parsedDate} ${activity.time}`), "H'h'mm'min'"),
       };
     });
   }, [data]);
+
+  const totalTime = useMemo(() => sumOfActivityTime(data), [data]);
 
   const handleDelete = useCallback(
     (id: string) => {
@@ -53,8 +60,10 @@ const List: React.FC = () => {
           key={activity.id}
           {...activity}
           handleDelete={handleDelete}
+          isLoading={idSelected === activity.id}
         />
       ))}
+      <Total>Tempo total de exercícios: {totalTime}</Total>
     </Container>
   );
 };
