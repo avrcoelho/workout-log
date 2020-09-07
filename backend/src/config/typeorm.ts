@@ -1,14 +1,19 @@
 import * as path from 'path';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import dotenv from 'dotenv';
+
+dotenv.config({
+  path: path.resolve(__dirname, '..', '..', `.env.${process.env.NODE_ENV}`),
+});
 
 const options: TypeOrmModuleOptions = {
   name: 'default',
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'docker',
-  database: 'luizalabs',
+  host: process.env.POSTGRES_HOST,
+  port: Number(process.env.POSTGRES_PORT),
+  username: process.env.POSTGRES_USERNAME,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DATABASE,
   entities: [
     path.resolve(
       __dirname,

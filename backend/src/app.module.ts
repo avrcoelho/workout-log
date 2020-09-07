@@ -7,6 +7,7 @@ import {
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
+import * as typeORMCOnfig from '@config/typeorm';
 import UsersModule from './modules/users/users.module';
 import ActivitiesModule from './modules/activities/activities.module';
 import RateLimiterMiddleware from './shared/infra/http/middlewares/RateLimiter.middleware';
@@ -16,7 +17,7 @@ import RateLimiterMiddleware from './shared/infra/http/middlewares/RateLimiter.m
     ConfigModule.forRoot({
       envFilePath: ['.env.development', '.env.production'],
     }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot(typeORMCOnfig),
     UsersModule,
     ActivitiesModule,
   ],
