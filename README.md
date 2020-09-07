@@ -2,9 +2,9 @@
 
 ## Sobre
 
-Aplicação desenvolvida (front e back-end) com o intuito de realizar o controlei de exercícios realizados por um usuário
+Aplicação desenvolvida (front e back-end) com o intuito de realizar o controle de exercícios realizados por um usuário.
 
-## Demonstação
+## Demonstração
 
 [https://trusting-wright-c109c5.netlify.app/](https://trusting-wright-c109c5.netlify.app/)
 
@@ -56,22 +56,22 @@ npm run typeorm migration:run
 ou
 
 ```sh
-yarn dypeorm migration:run
+yarn typeorm migration:run
 ```
 
-5. Acesse o diretório `backend` e execute o comando abaixo para executar o backend:
+6. Acesse o diretório `backend` e execute o comando abaixo para executar o backend:
 
 ```sh
-npm run dev:server
+npm run start:dev
 ```
 
 ou
 
 ```sh
-yarn dev:server
+yarn start:dev
 ```
 
-6. Acesse o diretório `frontend` e execute o comando abaixo para executar a aplicação web:
+7. Acesse o diretório `frontend` e execute o comando abaixo para executar a aplicação web:
 
 ```sh
 npm start
