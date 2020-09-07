@@ -65,7 +65,7 @@ const SignIn: React.FC = () => {
       <FormContainer>
         <h1>Workout Log</h1>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="email" placeholder="E-mail" />
+          <Input type="email" name="email" placeholder="E-mail" />
           <Input type="password" name="password" placeholder="Senha" />
 
           <Button>
