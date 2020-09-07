@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { parseISO, format } from 'date-fns';
 
 import * as ActivitiesActions from '../../../store/modules/activities/actions';
 import * as DeleteActivityActions from '../../../store/modules/deleteActivity/actions';
@@ -10,6 +9,7 @@ import { ApplicationState } from '../../../store';
 
 import ActivityItem from './Item';
 import sumOfActivityTime from '../../../utils/sumOfActivityTime';
+import formatDate from '../../../utils/formatDate';
 
 import { Container, Item, Column, Total } from './styles';
 
@@ -29,7 +29,6 @@ const List: React.FC = () => {
 
   const dataParsed = useMemo(() => {
     return data.map(activity => {
-      const [parsedDate] = activity.date.split('T');
       let parsedType = '';
 
       switch (activity.type) {
@@ -43,11 +42,13 @@ const List: React.FC = () => {
           parsedType = 'Natação';
       }
 
+      const [hour, minute] = activity.time.split(':');
+
       return {
         ...activity,
         type: parsedType,
-        date: format(parseISO(activity.date), "dd'/'MM'/'yyyy"),
-        time: format(parseISO(`${parsedDate} ${activity.time}`), "H'h'mm'min'"),
+        date: formatDate(activity.date),
+        time: `${hour}h${minute}min`,
       };
     });
   }, [data]);
