@@ -6,6 +6,7 @@ import api from '../../../services/api';
 import { loadSuccess, loadFailure } from './actions';
 import { SignIn } from '../signIn/types';
 import { ApplicationState } from '../..';
+import { logout } from '../signIn/actions';
 
 export function* activities(): SagaIterator {
   try {
@@ -19,8 +20,11 @@ export function* activities(): SagaIterator {
 
     yield put(loadSuccess(data));
   } catch (err) {
-    toast.error('Erro ao obter as atividades');
-
-    yield put(loadFailure());
+    if (err.response.status === 401) {
+      yield put(logout());
+    } else {
+      toast.error('Erro ao obter as atividades');
+      yield put(loadFailure());
+    }
   }
 }

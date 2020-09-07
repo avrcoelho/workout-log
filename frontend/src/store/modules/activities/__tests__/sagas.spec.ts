@@ -4,6 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import api from '../../../../services/api';
 
 import { loadSuccess, loadFailure } from '../actions';
+import { logout } from '../../signIn/actions';
 import { activities } from '../sagas';
 import { Activity } from '../types';
 
@@ -45,5 +46,13 @@ describe('Activities Saga', () => {
     await runSaga({ getState, dispatch }, activities).toPromise();
 
     expect(dispatch).toHaveBeenCalledWith(loadFailure());
+  });
+
+  it('should fail when api returns unauthorized', async () => {
+    apiMock.onGet('activities').reply(401);
+
+    await runSaga({ getState, dispatch }, activities).toPromise();
+
+    expect(dispatch).toHaveBeenCalledWith(logout());
   });
 });
